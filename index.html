@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FrontEnd 6</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+            max-width: 800px;
+            margin: 30px auto;
+        }
+
+        button {
+            background: #007bff;
+            color: #fff;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 3px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        img {
+            border-radius: 6px;
+            margin-top: 8px;
+        }
+
+        section {
+            background: #fff;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>jQuery Tasks</h2>
+
+    <section>
+        <p id="para1">Original text (ID)</p>
+        <p class="para2">Original text (Class)</p>
+        <p>Original paragraph (Tag)</p>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            console.log("JQuery is ready");
+            $("#para1").text("Changed with .text() by ID");
+            $(".para2").html("<b>Changed with .html() by class</b>");
+            $("p").css({ "color": "blue", "font-size": "18px" });
+        });
+    </script>
+
+    <section>
+        <p id="p2">This paragraph can hide or show.</p>
+        <button id="hide">Hide</button>
+        <button id="show">Show</button>
+        <button id="toggle">Toggle</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#hide").click(function () { $("#p2").hide(); });
+            $("#show").click(function () { $("#p2").show(); });
+            $("#toggle").click(function () { $("#p2").toggle(); });
+        });
+    </script>
+
+    <section>
+        <img id="img1" src="223.jpg" width="200">
+        <br>
+        <button id="fadeIn">Fade In</button>
+        <button id="fadeOut">Fade Out</button>
+        <button id="fadeToggle">Fade Toggle</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#fadeIn").click(function () { $("#img1").fadeIn(1000); });
+            $("#fadeOut").click(function () { $("#img1").fadeOut(1000); });
+            $("#fadeToggle").click(function () { $("#img1").fadeToggle(1000); });
+        });
+    </script>
+
+    <section>
+        <div id="panel-container">
+            <div id="panel">This is a panel.</div>
+        </div>
+        <button id="slideUp">Slide Up</button>
+        <button id="slideDown">Slide Down</button>
+        <button id="slideToggle">Slide Toggle</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#slideUp").click(function () { $("#panel").slideUp(); });
+            $("#slideDown").click(function () { $("#panel").slideDown(); });
+            $("#slideToggle").click(function () { $("#panel").slideToggle(); });
+        });
+    </script>
+
+    <section>
+        <ul id="myList">
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+        <button id="addItem">Add Item</button>
+        <button id="removeItem">Remove Item</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#addItem").click(function () {
+                $("#myList").append("<li>New Item</li>");
+            });
+            $("#removeItem").click(function () {
+                $("#myList li:last").remove();
+            });
+        });
+    </script>
+
+    <section>
+        <img id="photo" src="12.jpg" width="150">
+        <a id="myLink" href="https://google.com" target="_blank">Google</a><br>
+        <button id="changeImg">Change Image</button>
+        <button id="changeLink">Change Link</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#changeImg").click(function () {
+                $("#photo").attr("src", "3.jpg");
+            });
+            $("#changeLink").click(function () {
+                $("#myLink").attr("href", "https://w3schools.com").text("W3Schools");
+            });
+        });
+    </script>
+
+    <section>
+        <form>
+            Name: <input type="text" id="nameInput"><br>
+            Email: <input type="text" id="emailInput">
+        </form>
+        <p id="displayText"></p>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("input").on("keyup", function () {
+                let name = $("#nameInput").val();
+                let email = $("#emailInput").val();
+                $("#displayText").text("Name: " + name + " | Email: " + email);
+            });
+        });
+    </script>
+
+    <section>
+        <div id="box" style="width:100px;height:100px;background:blue;position:relative;"></div>
+        <button id="animate1">Animate</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#animate1").click(function () {
+                $("#box").animate({ left: '200px', width: '150px', height: '150px' }, 1000);
+            });
+        });
+    </script>
+
+    <section>
+        <div id="box2" style="width:100px;height:100px;background:green;position:relative;"></div>
+        <button id="animate2">Sequential Animation</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#animate2").click(function () {
+                $("#box2")
+                    .animate({ left: '200px' }, 800)
+                    .animate({ top: '100px' }, 800)
+                    .animate({ width: '50px', height: '50px' }, 800)
+                    .animate({ left: '0px', top: '0px', width: '100px', height: '100px' }, 800);
+            });
+        });
+    </script>
+
+    <section>
+        <div id="box3" style="width:100px;height:100px;background:orange;position:relative;"></div>
+        <button id="animate3">Combined Animation</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#animate3").click(function () {
+                $("#box3").animate({
+                    left: '150px',
+                    opacity: 0.3,
+                    width: '200px',
+                    height: '200px'
+                }, 1500);
+            });
+        });
+    </script>
+
+    <section>
+        <div id="ball" style="width:60px;height:60px;border-radius:50%;background:red;position:relative;"></div>
+        <button id="bounce">Start Bounce</button>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $("#bounce").click(function bounce() {
+                $("#ball").animate({ top: '200px' }, 600)
+                    .animate({ top: '0px' }, 600, bounce);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
